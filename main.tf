@@ -158,6 +158,25 @@ output "api_url" {
   value = "${aws_apigatewayv2_api.counter.api_endpoint}/count"
 }
 
+resource "aws_iam_user" "github_deploy" {
+  name = "github-deploy"
+}
+
+resource "aws_iam_user_policy" "github_deploy" {
+  name = "upload-to-resume-bucket"
+  user = aws_iam_user.github_deploy.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = ["s3:PutObject"]
+      Resource = "${aws_s3_bucket.site.arn}/*"
+    }]
+  })
+}
+
+
 
 
 
