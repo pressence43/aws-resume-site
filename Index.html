@@ -15,4 +15,10 @@
   <p><a href="https://github.com/pressence43">GitHub</a> |
      <a href="https://linkedin.com/in/pressence-hlungwani-601391160">LinkedIn</a></p>
 </body>
+<p>Visitors: <span id="count">...</span></p>
+<script>
+  fetch("https://hjh84vnvdl.execute-api.us-east-1.amazonaws.com/count")
+    .then(r => r.json())
+    .then(d => { document.getElementById("count").textContent = d.count; });
+</script>
 </html>

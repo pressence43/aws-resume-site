@@ -57,3 +57,107 @@ output "website_url" {
   value = aws_s3_bucket_website_configuration.site.website_endpoint
 }
 
+resource "aws_dynamodb_table" "counter" {
+  name         = "resume-visitor-counter"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
+resource "aws_iam_role" "lambda_role" {
+  name = "resume-counter-lambda-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = { Service = "lambda.amazonaws.com" }
+    }]
+  })
+}
+
+resource "aws_iam_role_policy" "lambda_policy" {
+  name = "resume-counter-lambda-policy"
+  role = aws_iam_role.lambda_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["dynamodb:UpdateItem"]
+        Resource = aws_dynamodb_table.counter.arn
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
+        Resource = "arn:aws:logs:*:*:*"
+      }
+    ]
+  })
+}
+
+
+data "archive_file" "counter_zip" {
+  type        = "zip"
+  source_file = "counter.py"
+  output_path = "counter.zip"
+}
+
+resource "aws_lambda_function" "counter" {
+  function_name    = "resume-visitor-counter"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "counter.lambda_handler"
+  runtime          = "python3.12"
+  filename         = data.archive_file.counter_zip.output_path
+  source_code_hash = data.archive_file.counter_zip.output_base64sha256
+}
+resource "aws_apigatewayv2_api" "counter" {
+  name          = "resume-counter-api"
+  protocol_type = "HTTP"
+
+  cors_configuration {
+    allow_origins = ["*"]
+    allow_methods = ["GET"]
+  }
+}
+
+resource "aws_apigatewayv2_integration" "counter" {
+  api_id                 = aws_apigatewayv2_api.counter.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.counter.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "counter" {
+  api_id    = aws_apigatewayv2_api.counter.id
+  route_key = "GET /count"
+  target    = "integrations/${aws_apigatewayv2_integration.counter.id}"
+}
+
+resource "aws_apigatewayv2_stage" "default" {
+  api_id      = aws_apigatewayv2_api.counter.id
+  name        = "$default"
+  auto_deploy = true
+}
+
+resource "aws_lambda_permission" "api" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.counter.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.counter.execution_arn}/*/*"
+}
+
+output "api_url" {
+  value = "${aws_apigatewayv2_api.counter.api_endpoint}/count"
+}
+
+
+
+
