@@ -1,26 +1,243 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pressece Hlungwani</title>
+  <meta name="description" content="Pressence Hlungwani - AWS Cloud and IT Support Portfolio">
+  <title>Pressence Hlungwani | Cloud Portfolio</title>
+
   <style>
-    body{ font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; 
-        background: #0f2447; color: #ffffff; }     
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #081426;
+      color: #e8eef8;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 18px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      background: #10233d;
+      border: 1px solid #233c5c;
+      border-radius: 20px;
+      padding: 42px;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.3);
+    }
+
+    .tag {
+      display: inline-block;
+      color: #69baff;
+      background: #183858;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 44px);
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .role {
+      color: #91a9c7;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .intro {
+      color: #c3d0e0;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .skill {
+      background: #193654;
+      color: #a9d8ff;
+      border: 1px solid #315477;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-size: 13px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: white;
+      background: #1769aa;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .links a:hover {
+      background: #258bd8;
+    }
+
+    .contact {
+      color: #a9bad0;
+      font-size: 14px;
+      line-height: 2;
+      border-top: 1px solid #29415e;
+      padding-top: 20px;
+    }
+
+    .contact a {
+      color: #79c2ff;
+      text-decoration: none;
+    }
+
+    .counter {
+      margin-top: 28px;
+      padding: 18px;
+      background: #0b1a2d;
+      border: 1px solid #29415e;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .counter-label {
+      color: #9fb2ca;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    #count {
+      font-size: 30px;
+      font-weight: bold;
+      color: #69baff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      color: #71869f;
+      font-size: 12px;
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding: 28px 22px;
+      }
+
+      .links a {
+        flex: 1;
+        text-align: center;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <h1>Pressece Hlungwani</h1>
-  <p>Junior Cloud Engineer | AWS | Terraform | Gauteng, South Africa.</p>
-  <p>Email: <a href="mailto:mahlorihlungwani95@gmail.com">mahlorihlungwani95@gmail.com</a></p>
-  <p>Phone: <a href="tel:+27694373574">069 437 3574</a></p>
-  <p><a href="https://github.com/pressence43">GitHub</a> |
-     <a href="https://linkedin.com/in/pressence-hlungwani-601391160">LinkedIn</a></p>
+  <main class="container">
+
+    <span class="tag">AWS CLOUD PORTFOLIO</span>
+
+    <h1>Pressence Hlungwani</h1>
+
+    <p class="role">
+      Cloud Support Engineer | AWS | Terraform |
+      Gauteng, South Africa
+    </p>
+
+    <p class="intro">
+      Welcome to my professional portfolio. I am passionate
+      about cloud computing, IT infrastructure and technical
+      problem-solving. I enjoy learning through practical
+      projects and building solutions using AWS technologies.
+    </p>
+
+    <h2>Technical Skills</h2>
+
+    <div class="skills">
+      <span class="skill">Amazon EC2</span>
+      <span class="skill">Amazon S3</span>
+      <span class="skill">AWS Lambda</span>
+      <span class="skill">DynamoDB</span>
+      <span class="skill">API Gateway</span>
+      <span class="skill">Terraform</span>
+      <span class="skill">Linux</span>
+      <span class="skill">CloudWatch</span>
+    </div>
+
+    <h2>Explore My Work</h2>
+
+    <div class="links">
+      <a href="https://github.com/pressence43" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/pressence-hlungwani-601391160" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+
+    <div class="contact">
+      <p>Email:
+        <a href="mailto:mahlorihlungwani95@gmail.com">
+          mahlorihlungwani95@gmail.com
+        </a>
+      </p>
+      <p>Phone:
+        <a href="tel:+27694373574">069 437 3574</a>
+      </p>
+    </div>
+
+    <div class="counter">
+      <p class="counter-label">Website Visitors</p>
+      <span id="count">Loading...</span>
+    </div>
+
+    <footer>
+      Built with AWS | Infrastructure as Code with Terraform
+    </footer>
+
+  </main>
+
+  <script>
+    fetch("https://hjh84vnvdl.execute-api.us-east-1.amazonaws.com/count")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Unable to load visitor count");
+        }
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById("count").textContent = data.count;
+      })
+      .catch(error => {
+        document.getElementById("count").textContent = "Unavailable";
+        console.error(error);
+      });
+  </script>
+
 </body>
-<p>Visitors: <span id="count">...</span></p>
-<script>
-  fetch("https://hjh84vnvdl.execute-api.us-east-1.amazonaws.com/count")
-    .then(r => r.json())
-    .then(d => { document.getElementById("count").textContent = d.count; });
-</script>
 </html>
