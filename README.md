@@ -4,7 +4,7 @@
 Welcome to my AWS Cloud Resume Challenge project! This project demonstrates my practical experience building and deploying a cloud-hosted resume website using AWS services and Infrastructure as Code.
 
 ## Live Website
-[Add your CloudFront website URL here]
+[[View My Live Resume Website](https://d3iaraeem199vu.cloudfront.net)]
 
 ## AWS Architecture
 
